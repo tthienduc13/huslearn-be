@@ -24,7 +24,8 @@
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
         "prepare": "husky",
-        "pre-commit": "lint-staged"
+        "pre-commit": "lint-staged",
+        "postinstall": "prisma generate"
     },
     "dependencies": {
         "@nestjs/common": "^11.0.1",
@@ -65,6 +66,7 @@
         "globals": "^15.14.0",
         "husky": "^9.1.7",
         "jest": "^29.7.0",
+        "lint-staged": "^15.4.3",
         "prettier": "^3.4.2",
         "prisma": "^6.4.1",
         "source-map-support": "^0.5.21",
