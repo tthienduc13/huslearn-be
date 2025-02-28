@@ -6,12 +6,21 @@ import { Env } from '@/shared/utils/validate-env';
 import { Headers } from '@/domain/constants/header';
 import { RedirectMiddleware } from '@api/middlewares/redirect.middleware';
 import { SetupScalar } from '@infra/configurations/scalar.config';
+import { ResponseInterceptor } from './api/interceptors/response.interceptor';
+import { Reflector } from '@nestjs/core';
 
 export const bootstrap = async (app: NestExpressApplication) => {
   const logger = app.get(Logger);
   const configService = app.get(ConfigService<Env>);
+
+  //   Middlewares
   const redirectMiddleware = new RedirectMiddleware();
   app.use(redirectMiddleware.use.bind(redirectMiddleware));
+
+  // Interceptors
+  const responseInterceptor = new ResponseInterceptor(new Reflector());
+  app.useGlobalInterceptors(responseInterceptor);
+
   app.setGlobalPrefix('/api/v1');
 
   app.enableCors({
