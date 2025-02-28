@@ -21,34 +21,34 @@
             "@/*": [
                 "./src/*"
             ],
-            "@app/api": [
+            "@api": [
                 "src/api"
             ],
-            "@app/api/*": [
+            "@api/*": [
                 "src/api/*"
             ],
-            "@app/application": [
+            "@application": [
                 "src/application"
             ],
-            "@app/application/*": [
+            "@application/*": [
                 "src/application/*"
             ],
-            "@app/domain": [
+            "@domain": [
                 "src/domain"
             ],
-            "@app/domain/*": [
+            "@domain/*": [
                 "src/domain/*"
             ],
-            "@app/infra": [
+            "@infra": [
                 "src/infra"
             ],
-            "@app/infra/*": [
+            "@infra/*": [
                 "src/infra/*"
             ],
-            "@app/shared": [
+            "@shared": [
                 "src/shared"
             ],
-            "@app/shared/*": [
+            "@shared/*": [
                 "src/shared/*"
             ]
         }
