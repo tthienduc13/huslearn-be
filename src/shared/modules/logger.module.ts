@@ -8,16 +8,23 @@ import { Env } from '@shared/utils/validate-env';
     PinoModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService<Env>) => ({
-        pinoHttp: {
-          quietReqLogger: true,
-          quietResLogger: true,
-          transport: {
-            target:
-              config.get('NODE_ENV') !== 'production' ? 'pino-pretty' : '',
+      useFactory: (config: ConfigService<Env>) => {
+        const isProduction = config.get('NODE_ENV') === 'production';
+
+        return {
+          pinoHttp: {
+            quietReqLogger: true,
+            quietResLogger: true,
+            ...(isProduction
+              ? {} // No transport in production
+              : {
+                  transport: {
+                    target: 'pino-pretty',
+                  },
+                }),
           },
-        },
-      }),
+        };
+      },
     }),
   ],
 })
