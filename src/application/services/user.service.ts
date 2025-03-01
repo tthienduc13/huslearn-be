@@ -7,10 +7,17 @@ import {
   DEFAULT_PAGE_NUMBER,
   DEFAULT_PAGE_SIZE,
 } from '@/domain/constants/pagination';
+import { InjectMapper } from '@automapper/nestjs';
+import { Mapper } from '@automapper/core';
+import { User } from '@/domain/entities/user.entity';
+import { UserProfileResponse } from '@application/models/user/response/profile.model';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    @InjectMapper() private readonly mapper: Mapper,
+  ) {}
 
   async findAllUsers(pagination: Pagination) {
     const page = pagination.page ?? DEFAULT_PAGE_NUMBER;
@@ -22,10 +29,12 @@ export class UserService {
       this.prismaService.user.findMany({ skip, take: limit }),
     ]);
 
+    const response = this.mapper.mapArray(users, User, UserProfileResponse);
+
     const totalPages = Math.ceil(totalCount / limit);
 
     return {
-      data: users,
+      data: response,
       pagination: {
         totalCount,
         pageSize: limit,

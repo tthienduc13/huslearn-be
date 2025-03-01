@@ -1,4 +1,4 @@
-import { PaginationMetadata } from '@/shared/decorators/paginatin.decorator';
+import { PaginationMetadata } from '@/shared/decorators/pagination.decorator';
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 

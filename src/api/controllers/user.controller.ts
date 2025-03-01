@@ -2,7 +2,7 @@ import { UserService } from '@/application/services/user.service';
 import {
   PaginationMetadata,
   SetPaginationHeader,
-} from '@/shared/decorators/paginatin.decorator';
+} from '@/shared/decorators/pagination.decorator';
 import { Pagination } from '@/shared/models/pagination.model';
 import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Response } from 'express';

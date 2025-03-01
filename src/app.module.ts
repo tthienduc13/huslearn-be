@@ -6,13 +6,25 @@ import { ConfigModule } from '@nestjs/config';
 import { validateEnv } from '@shared/utils/validate-env';
 import { UserModule } from '@api/modules/user.module';
 import { PaginationMiddleware } from '@api/middlewares/pagination.middleware';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from '@shared/guards/role.guard';
+import { AutomapperModule } from '@automapper/nestjs';
+import { classes } from '@automapper/classes';
 
 @Module({
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       validate: validateEnv,
+    }),
+    AutomapperModule.forRoot({
+      strategyInitializer: classes(),
     }),
     ThrottleModule,
     LoggerModule,
