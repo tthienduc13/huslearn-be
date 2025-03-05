@@ -44,7 +44,9 @@ export const bootstrap = async (app: NestExpressApplication) => {
   );
   SetupScalar(app);
 
-  await app.listen(configService.get('PORT')!, () => {
-    logger.log(`App listen at port ${configService.get('PORT')} 🚀`);
+  const port = configService.get('PORT') || process.env.PORT || 80;
+
+  await app.listen(port, () => {
+    logger.log(`App listening on port ${port} 🚀`);
   });
 };
