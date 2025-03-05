@@ -9,6 +9,8 @@ import { SetupScalar } from '@infra/configurations/scalar.config';
 import { ResponseInterceptor } from './api/interceptors/response.interceptor';
 import { Reflector } from '@nestjs/core';
 
+const port = process.env.PORT || 3000;
+
 export const bootstrap = async (app: NestExpressApplication) => {
   const logger = app.get(Logger);
   const configService = app.get(ConfigService<Env>);
@@ -43,8 +45,6 @@ export const bootstrap = async (app: NestExpressApplication) => {
     }),
   );
   SetupScalar(app);
-
-  const port = configService.get('PORT');
 
   await app.listen(port, () => {
     logger.log(`App listening on port ${port} 🚀`);
