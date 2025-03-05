@@ -61,4 +61,4 @@ jobs:
           app-name: 'hushlearn'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_214853473E8A48489FD9DFAC7F15DBC6 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3D437A365021466C8D8A4B8C113CB617 }}
