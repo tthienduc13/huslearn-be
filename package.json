@@ -1,6 +1,7 @@
 {
     "name": "hushlearn-be",
     "version": "0.0.1",
+    "packageManager": "pnpm@10.5.2",
     "description": "",
     "author": {
         "name": "ducnltdev",
